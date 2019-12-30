@@ -32,10 +32,20 @@ public class Matrix {
         this.array = Arrays.copyOf(matrix.array, matrix.m);
     }
 
+    /**
+     * @param m index of row
+     * @param n index of column
+     * @return value in cell with given indexes
+     */
     public double getCell(int m, int n) {
         return array[m][n];
     }
 
+    /**
+     * @param m   index of row
+     * @param n   index of column
+     * @param val new value to set
+     */
     public void setCell(int m, int n, double val) {
         array[m][n] = val;
     }
