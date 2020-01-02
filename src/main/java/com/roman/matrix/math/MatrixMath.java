@@ -85,6 +85,12 @@ public class MatrixMath {
             }
         }
 
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return result;
     }
 
