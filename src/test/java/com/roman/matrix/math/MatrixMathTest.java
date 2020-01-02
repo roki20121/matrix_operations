@@ -46,4 +46,55 @@ class MatrixMathTest {
 
     }
 
+    @Test
+    void multiplyMatrices_smallMatrices_correctResult() {
+        double[][] firstArray = new double[][]{
+                {876.0272507, 994.7061238, 773.0530224, 991.0397068, 8.413118898},
+                {589.3680449, 377.082443, 229.6070181, 754.6477813, 352.3342221},
+                {398.1895507, 265.3985274, 780.0715834, 975.9723523, 114.2894096},
+                {941.434876, 851.4594552, 831.6183252, 367.5269975, 497.371386},
+                {537.816248, 391.1969589, 857.9332515, 348.2839338, 303.2015422}
+        };
+
+        double[][] secondArray = new double[][]{
+                {33.46755639, 361.10124, 725.9874523, 868.4790227, 689.5002495},
+                {845.7020702, 351.6337918, 791.8467369, 780.3220707, 405.7338769},
+                {375.9694304, 764.3112267, 647.2615962, 938.2293616, 104.7703038},
+                {860.175828, 137.0211186, 973.0438912, 921.3782613, 808.6967729},
+                {163.2181222, 295.4408616, 758.1532125, 342.0586192, 627.1850068}
+        };
+
+        Matrix matrix1 = new Matrix(firstArray);
+        Matrix matrix2 = new Matrix(secondArray);
+
+        Matrix correctMatrix = multMatrix(matrix1, matrix2);
+
+        Matrix computed = MatrixMath.multiplyMatrices(matrix1, matrix2);
+
+        assertEquals(correctMatrix, computed);
+
+    }
+
+    private Matrix multMatrix(Matrix matrix1, Matrix matrix2) {
+        if (matrix1.getNumberOfColumns() != matrix2.getNumberOfRows()) {
+            throw new IllegalArgumentException(
+                    "Number of columns in first matrix has to be equal to number of rows in second");
+        }
+
+        Matrix result = new Matrix(matrix1.getNumberOfRows(), matrix2.getNumberOfColumns());
+
+
+        for (int i = 0; i < result.getNumberOfRows(); i++) {
+            for (int j = 0; j < result.getNumberOfColumns(); j++) {
+                double sum = 0;
+                for (int k = 0; k < matrix1.getNumberOfColumns(); k++) {
+                    sum += matrix1.getCell(i, k) * matrix2.getCell(k, j);
+                }
+                result.setCell(i, j, sum);
+            }
+        }
+
+        return result;
+    }
+
 }
