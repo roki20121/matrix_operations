@@ -6,7 +6,7 @@ public class StringUtils {
         double[] longs = new double[strings.length];
 
         for (int i = 0; i < strings.length; i++) {
-            longs[i] = Double.parseDouble(strings[i]);
+            longs[i] = Double.parseDouble(strings[i].replace(',', '.'));
         }
         return longs;
     }
