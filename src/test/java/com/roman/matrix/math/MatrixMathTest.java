@@ -7,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.IOException;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,7 +30,7 @@ class MatrixMathTest {
     }
 
 
-    private static Stream<Arguments> generateSquareMatrices() throws IOException {
+    private static Stream<Arguments> generateSquareMatrices() {
 
         Matrix matrix1 = TestUtils.readMatrixFromResource("1/1.csv");
         Matrix matrix2 = TestUtils.readMatrixFromResource("1/2.csv");
@@ -45,15 +44,11 @@ class MatrixMathTest {
         Matrix matrix7 = TestUtils.readMatrixFromResource("100/1.csv");
         Matrix matrix8 = TestUtils.readMatrixFromResource("100/2.csv");
 
-//        Matrix matrix9 = new FormattedReader(new FileReader("1000/1.csv"),"\t").read();
-//        Matrix matrix10 = new FormattedReader(new FileReader("1000/2.csv"), "\t").read();
-
         return Stream.of(
                 Arguments.of(matrix1, matrix2),
                 Arguments.of(matrix3, matrix4),
                 Arguments.of(matrix5, matrix6),
                 Arguments.of(matrix7, matrix8)
-//                Arguments.of(matrix9,matrix10)
         );
     }
 
